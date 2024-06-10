@@ -1,37 +1,37 @@
 // src/components/PostForm.jsx
-
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const PostForm = () => {
   const [descripcion, setDescripcion] = useState('');
-  const [imagen, setImagen] = useState(null); // Nuevo estado para la imagen
-
-  const handleImageChange = (e) => {
-    const file = e.target.files[0];
-    setImagen(file);
-  };
+  const [nombreUsuario, setNombreUsuario] = useState('');
+  const [foto, setFoto] = useState(null);
+  const [error, setError] = useState('');
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
-    try {
-      const formData = new FormData();
-      formData.append('descripcion', descripcion);
-      formData.append('imagen', imagen);
 
+    const formData = new FormData();
+    formData.append('descripcion', descripcion);
+    formData.append('nombre_usuario', nombreUsuario);
+    formData.append('foto', foto);
+
+    try {
       const response = await fetch('http://localhost:3000/publicaciones', {
         method: 'POST',
         body: formData,
       });
 
       if (response.ok) {
-        // Publicación exitosa, redirigir a la página de publicaciones o mostrar un mensaje de éxito
+        navigate('/publicaciones');
       } else {
-        // Manejar errores de publicación
-        console.error('Error al crear la publicación:', response.statusText);
+        const errorData = await response.json();
+        setError(errorData.error || 'Error al crear la publicación. Por favor, intenta de nuevo.');
       }
     } catch (error) {
       console.error('Error al crear la publicación:', error);
+      setError('Error al crear la publicación. Por favor, intenta de nuevo.');
     }
   };
 
@@ -48,16 +48,25 @@ const PostForm = () => {
         />
       </div>
       <div>
-        <label htmlFor="imagen">Imagen:</label>
+        <label htmlFor="nombreUsuario">Nombre de usuario:</label>
         <input
-          type="file"
-          id="imagen"
-          accept="image/*"
-          onChange={handleImageChange}
+          type="text"
+          id="nombreUsuario"
+          value={nombreUsuario}
+          onChange={(e) => setNombreUsuario(e.target.value)}
           required
         />
       </div>
-      <button type="submit">Publicar</button>
+      <div>
+        <label htmlFor="foto">Foto:</label>
+        <input
+          type="file"
+          id="foto"
+          onChange={(e) => setFoto(e.target.files[0])}
+        />
+      </div>
+      {error && <div style={{ color: 'red' }}>{error}</div>}
+      <button type="submit">Crear Publicación</button>
     </form>
   );
 };
