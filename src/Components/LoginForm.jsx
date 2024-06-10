@@ -11,12 +11,26 @@ const LoginForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
     try {
-      // Aquí enviarías una solicitud al backend con los datos de inicio de sesión
-      console.log('Username:', username);
-      console.log('Password:', password);
-      // Lógica para enviar la solicitud al backend y manejar la respuesta
+      const response = await fetch('http://localhost:3000/auth', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ nombre_usuario: username, contrasena: password }) // Ajustar los nombres de los campos
+      });
+
+      if (response.ok) {
+        // Si la respuesta es exitosa, redirigir a la página de publicaciones
+        navigate('/post');
+      } else {
+        // Si la respuesta es un error, mostrar un mensaje de error
+        const errorData = await response.json();
+        setError(errorData.error || 'Credenciales incorrectas. Por favor, intenta de nuevo.');
+      }
     } catch (error) {
+      console.error('Error al iniciar sesión:', error);
       setError('Error al iniciar sesión. Por favor, intenta de nuevo.');
     }
   };
