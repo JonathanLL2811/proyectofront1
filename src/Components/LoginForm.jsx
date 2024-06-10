@@ -1,7 +1,6 @@
-// src/components/LoginForm.jsx
-
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import '../styles/AuthForms.css'; // Importa el archivo CSS
 
 const LoginForm = () => {
   const [username, setUsername] = useState('');
@@ -40,7 +39,7 @@ const LoginForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className="auth-form" onSubmit={handleSubmit}>
       <div>
         <label htmlFor="username">Nombre de usuario:</label>
         <input
@@ -62,8 +61,10 @@ const LoginForm = () => {
         />
       </div>
       {error && <div style={{ color: 'red' }}>{error}</div>}
-      <button type="submit">Iniciar sesión</button>
-      <button type="button" onClick={handleRegister}>Registrar</button>
+      <div className="button-container">
+        <button type="submit">Iniciar sesión</button>
+        <button type="button" onClick={handleRegister}>Registrar</button>
+      </div>
     </form>
   );
 };

@@ -1,0 +1,68 @@
+/* Estilos para los formularios de autenticación */
+.auth-form {
+  background: linear-gradient(to right, #080000, #2d2d2d); /* Degradado lateral de negro a gris oscuro */
+  padding: 50px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(102, 101, 101, 0.1);
+  width: 100%;
+  max-width: 400px;
+  box-sizing: border-box;
+  margin: 20px 0; /* Espacio entre formularios si se muestran en la misma página */
+}
+
+/* Estilos para los elementos del formulario */
+.auth-form div {
+  margin-bottom: 20px;
+}
+
+.auth-form label {
+  display: block;
+  margin-bottom: 2px;
+  font-weight: bold;
+  color: #fff; /* Texto en blanco para mejor visibilidad */
+}
+
+.auth-form input[type="text"],
+.auth-form input[type="password"],
+.auth-form input[type="file"],
+.auth-form button {
+  width: 100%;
+  padding: 10px;
+  background-color: #525252;
+  border-radius: 5px;
+}
+
+.auth-form input[type="text"],
+.auth-form input[type="password"],
+.auth-form input[type="file"] {
+  background-color: #474747;
+}
+
+/* Contenedor para los botones */
+.auth-form .button-container {
+  display: flex;
+  flex-direction: column; /* Mostrar los botones en columnas */
+  gap: 20px; /* Espacio entre los botones */
+}
+
+.auth-form button {
+  background-color: #007bff;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  border: none;
+}
+
+.auth-form button:hover {
+  background-color: #0056b3;
+}
+
+.auth-form button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.auth-form .error {
+  color: red;
+  margin-top: -10px;
+}

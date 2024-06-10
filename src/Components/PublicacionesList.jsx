@@ -1,22 +1,23 @@
-// src/components/PublicacionesList.jsx
-
 import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 
 const PublicacionesList = () => {
   const [publicaciones, setPublicaciones] = useState([]);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchPublicaciones = async () => {
       try {
-        const response = await fetch('http://localhost:3000/publicaciones');
-        if (response.ok) {
-          const data = await response.json();
-          setPublicaciones(data);
+        const response = await axios.get('http://localhost:3000/publicaciones');
+        if (response.status === 200) {
+          setPublicaciones(response.data);
         } else {
           console.error('Error al obtener las publicaciones:', response.statusText);
+          setError('Error al obtener las publicaciones');
         }
       } catch (error) {
         console.error('Error al obtener las publicaciones:', error);
+        setError('Error al obtener las publicaciones');
       }
     };
 
@@ -24,17 +25,28 @@ const PublicacionesList = () => {
   }, []);
 
   return (
-    <div>
+    <div className="container">
       <h2>Publicaciones</h2>
-      <ul>
+      {error && <p style={{ color: 'red' }}>{error}</p>}
+      <div className="row">
         {publicaciones.map((publicacion) => (
-          <li key={publicacion.id_publicacion}>
-            <img src={`data:${publicacion.mime_type};base64,${publicacion.foto}`} alt={publicacion.nombre_foto} />
-            <p>{publicacion.descripcion}</p>
-            <p>Publicado por: {publicacion.nombre_usuario}</p>
-          </li>
+          <div key={publicacion.id_publicacion} className="col-md-4 mb-4">
+            <div className="card">
+              <img
+                src={`data:${publicacion.mime_type};base64,${publicacion.foto}`}
+                alt={publicacion.nombre_foto}
+                className="card-img-top"
+                width={300}
+                height={300}
+              />
+              <div className="card-body">
+                <p className="card-text">{publicacion.descripcion}</p>
+                <p className="card-text">Publicado por: {publicacion.nombre_usuario}</p>
+              </div>
+            </div>
+          </div>
         ))}
-      </ul>
+      </div>
     </div>
   );
 };

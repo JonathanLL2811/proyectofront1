@@ -1,6 +1,7 @@
 // src/components/PostForm.jsx
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import '../styles/PostForm.css'; // Importa el archivo CSS
 
 const PostForm = () => {
   const [descripcion, setDescripcion] = useState('');
