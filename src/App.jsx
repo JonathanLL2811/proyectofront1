@@ -12,11 +12,13 @@ const App = () => {
       <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
         {/* Encabezado */}
         <header style={{ backgroundColor: '#333', color: '#fff', padding: '10px', textAlign: 'center' }}>
-          <h3>Red Social Jonathan Jesus Lorenzana Lemus</h3>
+          <h3>Red Social </h3>
         </header>
 
         {/* Contenido principal */}
         <div style={{ flex: 1, marginTop: '20px', textAlign: 'center' }}>
+
+          
           {/* Botones de navegación */}
           <Link to="/">
             <button>Salir</button>
@@ -40,7 +42,7 @@ const App = () => {
 
         {/* Pie de página */}
         <footer style={{ backgroundColor: '#333', color: '#fff', padding: '10px', textAlign: 'center' }}>
-          &copy; 2024 Mi primera Red Social Jonathan Lorenzana
+          &copy; 2024 Jonathan Jesus Lorenzana Lemus
         </footer>
       </div>
     </Router>
