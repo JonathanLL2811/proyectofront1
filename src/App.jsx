@@ -9,28 +9,40 @@ import PerfilUsuario from './Components/PerfilUsuario'; // Importa el componente
 const App = () => {
   return (
     <Router>
-      <div>
-        {/* Botón de salida para regresar al formulario de inicio de sesión */}
-        <Link to="/">
-          <button>Salir</button>
-        </Link>
+      <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+        {/* Encabezado */}
+        <header style={{ backgroundColor: '#333', color: '#fff', padding: '10px', textAlign: 'center' }}>
+          <h3>Red Social Jonathan Jesus Lorenzana Lemus</h3>
+        </header>
 
-        <Link to="/publicaciones">
-          <button>Publicaciones</button>
-        </Link>
+        {/* Contenido principal */}
+        <div style={{ flex: 1, marginTop: '20px', textAlign: 'center' }}>
+          {/* Botones de navegación */}
+          <Link to="/">
+            <button>Salir</button>
+          </Link>
+          <Link to="/publicaciones">
+            <button>Publicaciones</button>
+          </Link>
+          <Link to="/post">
+            <button>Publicar algo</button>
+          </Link>
 
-        <Link to="/post">
-          <button>Publicar algo</button>
-        </Link>
-      
+          {/* Rutas */}
+          <Routes>
+            <Route path="/" element={<LoginForm />} />
+            <Route path="/register" element={<RegistroForm />} />
+            <Route path="/post" element={<PostForm />} /> {/* Ruta para el componente PostForm */}
+            <Route path="/publicaciones" element={<Publicaciones />} /> {/* Ruta para el componente Publicaciones */}
+            <Route path="/perfil/:nombre_usuario" element={<PerfilUsuario />} /> {/* Ruta para el componente PerfilUsuario */}
+          </Routes>
+        </div>
+
+        {/* Pie de página */}
+        <footer style={{ backgroundColor: '#333', color: '#fff', padding: '10px', textAlign: 'center' }}>
+          &copy; 2024 Mi primera Red Social Jonathan Lorenzana
+        </footer>
       </div>
-      <Routes>
-        <Route path="/" element={<LoginForm />} />
-        <Route path="/register" element={<RegistroForm />} />
-        <Route path="/post" element={<PostForm />} /> {/* Ruta para el componente PostForm */}
-        <Route path="/publicaciones" element={<Publicaciones />} /> {/* Ruta para el componente Publicaciones */}
-        <Route path="/perfil/:nombre_usuario" element={<PerfilUsuario />} /> {/* Ruta para el componente PerfilUsuario */}
-      </Routes>
     </Router>
   );
 };
