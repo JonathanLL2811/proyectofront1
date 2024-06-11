@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom'; // Importa Link desde react-router-dom
 
 const PublicacionesList = () => {
   const [publicaciones, setPublicaciones] = useState([]);
@@ -41,7 +42,10 @@ const PublicacionesList = () => {
               />
               <div className="card-body">
                 <p className="card-text">{publicacion.descripcion}</p>
-                <p className="card-text">Publicado por: {publicacion.nombre_usuario}</p>
+                {/* Enlace al perfil del usuario */}
+                <p className="card-text">
+                  Publicado por: <Link to={`/perfil/${publicacion.nombre_usuario}`}>{publicacion.nombre_usuario}</Link>
+                </p>
               </div>
             </div>
           </div>

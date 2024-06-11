@@ -1,0 +1,45 @@
+/* Estilos para el perfil de usuario */
+.profile-container {
+    background: linear-gradient(to right, #080000, #2d2d2d); /* Degradado lateral de negro a gris oscuro */
+    padding: 50px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(102, 101, 101, 0.1);
+    width: 100%;
+    max-width: 500px; /* Ajustar el ancho máximo según tus necesidades */
+    box-sizing: border-box;
+    margin: 20px auto; /* Centrar el perfil en la página */
+  }
+  
+  /* Estilos para los elementos del perfil */
+  .profile-container table {
+    width: 100%;
+    border-collapse: collapse; /* Colapsar bordes de la tabla */
+    margin-bottom: 20px;
+  }
+  
+  .profile-container td {
+    padding: 10px;
+    border-bottom: 1px solid #fff; /* Línea separadora entre filas */
+  }
+  
+  .profile-container td:first-child {
+    font-weight: bold;
+    color: #fff; /* Texto en blanco para mejor visibilidad */
+    width: 150px; /* Ancho fijo para la primera columna */
+  }
+  
+  .profile-container img {
+    max-width: 100%; /* Ajustar imagen al contenedor */
+    border-radius: 5px; /* Añadir bordes redondeados a la imagen */
+    margin-top: 20px; /* Espacio entre la tabla y la imagen */
+  }
+  
+  /* Estilos para las publicaciones */
+  .profile-container .publications-container {
+    margin-top: 30px; /* Espacio entre el perfil y las publicaciones */
+  }
+  
+  .profile-container .publications-container .card {
+    margin-bottom: 40px; /* Espacio entre las tarjetas de las publicaciones */
+  }
+  

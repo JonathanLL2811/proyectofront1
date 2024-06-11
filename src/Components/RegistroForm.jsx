@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom'; // Importa Link desde react-router-dom
 import '../styles/RegistroForm.css'; // Importa el archivo CSS
 
 const RegistroForm = () => {
@@ -9,6 +10,7 @@ const RegistroForm = () => {
   const [contrasena, setContrasena] = useState('');
   const [imagen, setImagen] = useState(null);
   const [error, setError] = useState('');
+  const [registroExitoso, setRegistroExitoso] = useState(false); // Nuevo estado para controlar el registro exitoso
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
@@ -34,6 +36,8 @@ const RegistroForm = () => {
 
       if (response.ok) {
         // Registro exitoso
+        setRegistroExitoso(true); // Actualiza el estado para mostrar el mensaje de éxito
+        setError(''); // Limpia el mensaje de error
       } else {
         const data = await response.json();
         setError(data.error);
@@ -106,6 +110,7 @@ const RegistroForm = () => {
         />
       </div>
       {error && <div style={{ color: 'red' }}>{error}</div>}
+      {registroExitoso && <div style={{ color: 'green' }}>¡Registro exitoso! Por favor <Link to="/">inicia sesión</Link>.</div>} {/* Muestra el mensaje de éxito y el enlace al inicio de sesión */}
       <button type="submit">Registrar</button>
     </form>
   );
