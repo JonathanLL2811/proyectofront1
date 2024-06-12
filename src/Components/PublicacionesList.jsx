@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import '../styles/publicaciones.css'; // Importa el archivo de estilos
 
 const PublicacionesList = () => {
   const [publicaciones, setPublicaciones] = useState([]);
@@ -42,13 +43,11 @@ const PublicacionesList = () => {
                 src={`data:${publicacion.mime_type};base64,${publicacion.foto}`}
                 alt={publicacion.nombre_foto}
                 className="card-img-top"
-                width={300}
-                height={300}
               />
               <div className="card-body">
-                <p className="card-text">{publicacion.descripcion}</p>
-                <Link to={`/perfil/${publicacion.nombre_usuario}`} className="btn btn-primary">
-                Ver perfil: {publicacion.nombre_usuario}
+                <p className="card-text card-description">{publicacion.descripcion}</p>
+                <Link to={`/perfil/${publicacion.nombre_usuario}`} className="card-link">
+                  Ver perfil: {publicacion.nombre_usuario}
                 </Link>
               </div>
             </div>
@@ -60,6 +59,3 @@ const PublicacionesList = () => {
 };
 
 export default PublicacionesList;
-
-
-
