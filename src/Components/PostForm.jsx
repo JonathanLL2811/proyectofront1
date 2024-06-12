@@ -4,13 +4,16 @@ import '../styles/PostForm.css';
 
 const PostForm = () => {
   const [descripcion, setDescripcion] = useState('');
-  const [nombreUsuario, setNombreUsuario] = useState('');
+
   const [foto, setFoto] = useState(null);
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+// Recuperar el nombre de usuario del localStorage
+const nombreUsuario = localStorage.getItem('username');
+
+const handleSubmit = async (e) => {
+  e.preventDefault();
 
     const formData = new FormData();
     formData.append('descripcion', descripcion);
@@ -52,12 +55,13 @@ const PostForm = () => {
         />
       </div>
       <div>
-        <label htmlFor="nombreUsuario">Nombre de usuario:</label>
+      <label htmlFor="nombreUsuario">Nombre de usuario:</label>
+        {/* Llenar automáticamente el campo con el nombre de usuario */}
         <input
           type="text"
           id="nombreUsuario"
           value={nombreUsuario}
-          onChange={(e) => setNombreUsuario(e.target.value)}
+          readOnly // Hacer el campo de solo lectura
           required
         />
       </div>

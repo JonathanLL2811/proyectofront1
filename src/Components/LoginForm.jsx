@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import '../styles/AuthForms.css'; // Importa el archivo CSS
+import '../styles/AuthForms.css';
 
 const LoginForm = () => {
   const [username, setUsername] = useState('');
@@ -13,6 +13,7 @@ const LoginForm = () => {
     const tokenExpirationTimer = setTimeout(() => {
       setError('¡Tu sesión ha expirado! Por favor, inicia sesión nuevamente.');
       localStorage.removeItem('jwtToken');
+      localStorage.removeItem('username'); // También elimina el nombre de usuario del localStorage
     }, tokenExpiration);
 
     return () => clearTimeout(tokenExpirationTimer);
@@ -34,6 +35,7 @@ const LoginForm = () => {
         const { token, expiresIn } = await response.json();
 
         localStorage.setItem('jwtToken', token);
+        localStorage.setItem('username', username); // Guarda el nombre de usuario en el localStorage
         setTokenExpiration(expiresIn * 1000); // Convertir a milisegundos
         navigate('/post');
       } else {
