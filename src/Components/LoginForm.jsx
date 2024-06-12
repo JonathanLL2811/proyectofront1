@@ -12,19 +12,25 @@ const LoginForm = () => {
     e.preventDefault();
     
     try {
-      const response = await fetch('http://localhost:3000/auth', {
+      const response = await fetch('http://localhost:3000/auth', { // Ajusta la URL y el puerto
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ nombre_usuario: username, contrasena: password }) // Ajustar los nombres de los campos
+        body: JSON.stringify({ nombre_usuario: username, contrasena: password })
       });
 
       if (response.ok) {
-        // Si la respuesta es exitosa, redirigir a la página de publicaciones
+        // Si la respuesta es exitosa, captura el token JWT de la respuesta
+        const { token } = await response.json();
+        
+        // Almacena el token en el almacenamiento local del navegador
+        localStorage.setItem('jwtToken', token);
+
+        // Redirige a la página de publicaciones
         navigate('/post');
       } else {
-        // Si la respuesta es un error, mostrar un mensaje de error
+        // Si la respuesta es un error, muestra un mensaje de error
         const errorData = await response.json();
         setError(errorData.error || 'Credenciales incorrectas. Por favor, intenta de nuevo.');
       }
