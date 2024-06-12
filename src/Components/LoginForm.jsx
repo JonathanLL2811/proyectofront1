@@ -1,11 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import '../styles/AuthForms.css'; // Importa el archivo CSS
 
 const LoginForm = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const [tokenExpiration, setTokenExpiration] = useState(null);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const tokenExpirationTimer = setTimeout(() => {
+      setError('¡Tu sesión ha expirado! Por favor, inicia sesión nuevamente.');
+      localStorage.removeItem('jwtToken');
+    }, tokenExpiration);
+
+    return () => clearTimeout(tokenExpirationTimer);
+  }, [tokenExpiration]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -20,8 +31,10 @@ const LoginForm = () => {
       });
 
       if (response.ok) {
-        const { token } = await response.json();
+        const { token, expiresIn } = await response.json();
+
         localStorage.setItem('jwtToken', token);
+        setTokenExpiration(expiresIn * 1000); // Convertir a milisegundos
         navigate('/post');
       } else {
         const errorData = await response.json();
@@ -34,7 +47,7 @@ const LoginForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className="auth-form" onSubmit={handleSubmit}>
       <div>
         <label htmlFor="username">Nombre de usuario:</label>
         <input
@@ -56,10 +69,13 @@ const LoginForm = () => {
         />
       </div>
       {error && <div style={{ color: 'red' }}>{error}</div>}
-      <button type="submit">Iniciar sesión</button>
+      {tokenExpiration && <div className="timer">Tiempo restante de sesión: {Math.ceil(tokenExpiration / 1000)} segundos</div>}
+      <div className="button-container">
+        <button type="submit">Iniciar sesión</button>
+        <button type="button" onClick={() => navigate('/register')}>Registrar</button>
+      </div>
     </form>
   );
 };
 
 export default LoginForm;
-

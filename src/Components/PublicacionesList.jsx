@@ -48,7 +48,7 @@ const PublicacionesList = () => {
               <div className="card-body">
                 <p className="card-text">{publicacion.descripcion}</p>
                 <Link to={`/perfil/${publicacion.nombre_usuario}`} className="btn btn-primary">
-                  Ver perfil del usuario
+                Ver perfil: {publicacion.nombre_usuario}
                 </Link>
               </div>
             </div>
@@ -60,4 +60,6 @@ const PublicacionesList = () => {
 };
 
 export default PublicacionesList;
+
+
 
