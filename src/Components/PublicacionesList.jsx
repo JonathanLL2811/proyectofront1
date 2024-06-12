@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom'; // Importa Link desde react-router-dom
+import { Link } from 'react-router-dom';
 
 const PublicacionesList = () => {
   const [publicaciones, setPublicaciones] = useState([]);
@@ -9,7 +9,12 @@ const PublicacionesList = () => {
   useEffect(() => {
     const fetchPublicaciones = async () => {
       try {
-        const response = await axios.get('http://localhost:3000/publicaciones');
+        const token = localStorage.getItem('jwtToken');
+        const response = await axios.get('http://localhost:3000/publicaciones', {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        });
         if (response.status === 200) {
           setPublicaciones(response.data);
         } else {
@@ -42,10 +47,9 @@ const PublicacionesList = () => {
               />
               <div className="card-body">
                 <p className="card-text">{publicacion.descripcion}</p>
-                {/* Enlace al perfil del usuario */}
-                <p className="card-text">
-                  Publicado por: <Link to={`/perfil/${publicacion.nombre_usuario}`}>{publicacion.nombre_usuario}</Link>
-                </p>
+                <Link to={`/perfil/${publicacion.nombre_usuario}`} className="btn btn-primary">
+                  Ver perfil del usuario
+                </Link>
               </div>
             </div>
           </div>
@@ -56,3 +60,4 @@ const PublicacionesList = () => {
 };
 
 export default PublicacionesList;
+

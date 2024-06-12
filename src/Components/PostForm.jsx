@@ -1,7 +1,6 @@
-// src/components/PostForm.jsx
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import '../styles/PostForm.css'; // Importa el archivo CSS
+import '../styles/PostForm.css';
 
 const PostForm = () => {
   const [descripcion, setDescripcion] = useState('');
@@ -19,8 +18,12 @@ const PostForm = () => {
     formData.append('foto', foto);
 
     try {
+      const token = localStorage.getItem('jwtToken');
       const response = await fetch('http://localhost:3000/publicaciones', {
         method: 'POST',
+        headers: {
+          Authorization: `Bearer ${token}`
+        },
         body: formData,
       });
 

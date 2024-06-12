@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useParams } from 'react-router-dom'; // Importa useParams desde react-router-dom
-import '../styles/PerfilUsuario.css'; // Importa el archivo CSS
+import { useParams } from 'react-router-dom';
+import '../styles/PerfilUsuario.css';
 
 const PerfilUsuario = () => {
-  const { nombre_usuario } = useParams(); // Usa useParams para obtener el parámetro de la URL
+  const { nombre_usuario } = useParams();
   const [publicaciones, setPublicaciones] = useState([]);
   const [usuario, setUsuario] = useState(null);
   const [error, setError] = useState(null);
@@ -12,7 +12,12 @@ const PerfilUsuario = () => {
   useEffect(() => {
     const fetchPerfilUsuario = async () => {
       try {
-        const responseUsuario = await axios.get(`http://localhost:3000/publicaciones/usuario/${nombre_usuario}`);
+        const token = localStorage.getItem('jwtToken');
+        const responseUsuario = await axios.get(`http://localhost:3000/publicaciones/usuario/${nombre_usuario}`, {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        });
         if (responseUsuario.status === 200) {
           setUsuario(responseUsuario.data.usuario);
           setPublicaciones(responseUsuario.data.publicaciones);
@@ -30,7 +35,7 @@ const PerfilUsuario = () => {
   }, [nombre_usuario]);
 
   return (
-    <div className="profile-container"> {/* Aplica la clase profile-container */}
+    <div className="profile-container">
       {usuario && (
         <>
           <h2>Perfil de: {nombre_usuario}</h2>
@@ -64,14 +69,14 @@ const PerfilUsuario = () => {
           </table>
           {usuario.imagen && (
             <div>
-              <img src={`data:${usuario.mime_type};base64,${usuario.imagen}`} alt="Foto de perfil" className="profile-image" /> {/* Aplica la clase profile-image */}
+              <img src={`data:${usuario.mime_type};base64,${usuario.imagen}`} alt="Foto de perfil" className="profile-image" />
             </div>
           )}
         </>
       )}
       {error && <p style={{ color: 'red' }}>{error}</p>}
       <h2>Publicaciones</h2>
-      <div className="publications-container"> {/* Aplica la clase publications-container */}
+      <div className="publications-container">
         <div className="row">
           {publicaciones.map((publicacion) => (
             <div key={publicacion.id_publicacion} className="col-md-4 mb-4">

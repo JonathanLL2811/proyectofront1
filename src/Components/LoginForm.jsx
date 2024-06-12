@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import '../styles/AuthForms.css'; // Importa el archivo CSS
 
 const LoginForm = () => {
   const [username, setUsername] = useState('');
@@ -10,9 +9,9 @@ const LoginForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     try {
-      const response = await fetch('http://localhost:3000/auth', { // Ajusta la URL y el puerto
+      const response = await fetch('http://localhost:3000/auth', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -21,16 +20,10 @@ const LoginForm = () => {
       });
 
       if (response.ok) {
-        // Si la respuesta es exitosa, captura el token JWT de la respuesta
         const { token } = await response.json();
-        
-        // Almacena el token en el almacenamiento local del navegador
         localStorage.setItem('jwtToken', token);
-
-        // Redirige a la página de publicaciones
         navigate('/post');
       } else {
-        // Si la respuesta es un error, muestra un mensaje de error
         const errorData = await response.json();
         setError(errorData.error || 'Credenciales incorrectas. Por favor, intenta de nuevo.');
       }
@@ -40,12 +33,8 @@ const LoginForm = () => {
     }
   };
 
-  const handleRegister = () => {
-    navigate('/register');
-  };
-
   return (
-    <form className="auth-form" onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit}>
       <div>
         <label htmlFor="username">Nombre de usuario:</label>
         <input
@@ -67,12 +56,10 @@ const LoginForm = () => {
         />
       </div>
       {error && <div style={{ color: 'red' }}>{error}</div>}
-      <div className="button-container">
-        <button type="submit">Iniciar sesión</button>
-        <button type="button" onClick={handleRegister}>Registrar</button>
-      </div>
+      <button type="submit">Iniciar sesión</button>
     </form>
   );
 };
 
 export default LoginForm;
+
