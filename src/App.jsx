@@ -5,6 +5,7 @@ import RegistroForm from './Components/RegistroForm';
 import PostForm from './Components/PostForm';
 import Publicaciones from './Components/PublicacionesList';
 import PerfilUsuario from './Components/PerfilUsuario';
+import Amigos from './Components/amigos'; // Importa el componente de Amigos
 
 const App = () => {
   const handleLogout = () => {
@@ -26,6 +27,7 @@ const App = () => {
         <div style={{ flex: 1, marginTop: '20px', textAlign: 'center' }}>
           <Link to="/post"><button>Publicar algo</button></Link>
           <Link to="/publicaciones"><button>Publicaciones</button></Link>
+          <Link to="/amigos"><button>Buscar Amigos</button></Link> {/* Agrega el enlace para la lista de amigos */}
 
           <Routes>
             <Route path="/" element={<LoginForm />} />
@@ -33,6 +35,7 @@ const App = () => {
             <Route path="/post" element={<PostForm />} />
             <Route path="/publicaciones" element={<Publicaciones />} />
             <Route path="/perfil/:nombre_usuario" element={<PerfilUsuario />} />
+            <Route path="/amigos" element={<Amigos />} /> {/* Agrega la ruta para la lista de amigos */}
           </Routes>
         </div>
 

@@ -1,0 +1,37 @@
+/* Amigos.css */
+.table-container {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .table-container h2 {
+    margin-bottom: 10px;
+  }
+  
+  .table-container table {
+    width: 110%; /* Ajusta el ancho de la tabla según sea necesario */
+    border-collapse: collapse;
+  }
+  
+  .table-container th,
+  .table-container td {
+    padding: 8px;
+    border: 1px solid #c2ecff;
+    text-align: left;
+  }
+  
+  .table-container th {
+    background-color: #3b3b3b;
+    color: #ffffff; /* Cambia el color del texto de los encabezados */
+  }
+  
+  .table-container tr:hover {
+    background-color: #bda0ff;
+  }
+  
+  .table-container a {
+    color: #5f3892; /* Cambia el color de los enlaces de usuario */
+  }
+  
