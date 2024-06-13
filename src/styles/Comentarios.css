@@ -1,0 +1,48 @@
+/* Comentarios.css */
+
+.comentarios-container {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .comentario-item {
+    margin-bottom: 10px;
+  }
+  
+  .comentario-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10px;
+    width: 70%; /* Ancho del formulario */
+    max-width: 400px; /* Ancho máximo del formulario */
+  }
+  
+  .comentario-input {
+    width: 80%;
+    height: 30px;
+    padding: 5px;
+    font-size: 14px;
+    border: 1px solid #694fff;
+    border-radius: 4px;
+    resize: vertical; /* Permite redimensionar verticalmente el textarea */
+    margin-bottom: 10px;
+  }
+  
+  .comentario-submit {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #9553ff; /* Cambia el color de fondo del botón */
+    color: white; /* Cambia el color del texto del botón */
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+  
+  .error-message {
+    color: red; /* Cambia el color del mensaje de error */
+    margin-top: 10px;
+  }
+  
