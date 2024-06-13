@@ -90,6 +90,16 @@ const PerfilUsuario = () => {
                 />
                 <div className="card-body">
                   <p className="card-text">{publicacion.descripcion}</p>
+                  <h4>Comentarios:</h4>
+                  <ul>
+                    {publicacion.comentarios && publicacion.comentarios.map((comentario) => (
+                      <li key={comentario.id_comentario}>
+                        <strong>{comentario.nombre_usuario}</strong>: {comentario.comentario}
+                        <br />
+                        <small>{new Date(comentario.fecha_comentario).toLocaleString()}</small>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
               </div>
             </div>

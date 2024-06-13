@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import '../styles/publicaciones.css'; 
+import Comentarios from './comentarios'; // Importar el nuevo componente
 
 const PublicacionesList = () => {
   const [publicaciones, setPublicaciones] = useState([]);
@@ -50,6 +51,7 @@ const PublicacionesList = () => {
                   Ver perfil: {publicacion.nombre_usuario}
                 </Link>
               </div>
+              <Comentarios idPublicacion={publicacion.id_publicacion} /> {/* Agregar componente de comentarios */}
             </div>
           </div>
         ))}
