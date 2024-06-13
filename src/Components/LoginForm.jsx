@@ -1,23 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/AuthForms.css';
 
-const LoginForm = () => {
+const LoginForm = ({ onLogin }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-  const [tokenExpiration, setTokenExpiration] = useState(null);
   const navigate = useNavigate();
-
-  useEffect(() => {
-    const tokenExpirationTimer = setTimeout(() => {
-      setError('¡Tu sesión ha expirado! Por favor, inicia sesión nuevamente.');
-      localStorage.removeItem('jwtToken');
-      localStorage.removeItem('username'); // También elimina el nombre de usuario del localStorage
-    }, tokenExpiration);
-
-    return () => clearTimeout(tokenExpirationTimer);
-  }, [tokenExpiration]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -36,8 +25,13 @@ const LoginForm = () => {
 
         localStorage.setItem('jwtToken', token);
         localStorage.setItem('username', username); // Guarda el nombre de usuario en el localStorage
-        setTokenExpiration(expiresIn * 1000); // Convertir a milisegundos
-        navigate('/post');
+
+        // Configurar expiración del token en milisegundos
+        const expirationTime = new Date().getTime() + expiresIn * 1000;
+        localStorage.setItem('tokenExpiration', expirationTime);
+
+        onLogin(); // Actualiza el estado de isLoggedIn en App
+        navigate('/post'); // Redirige al usuario a /post después de iniciar sesión
       } else {
         const errorData = await response.json();
         setError(errorData.error || 'Credenciales incorrectas. Por favor, intenta de nuevo.');
@@ -71,7 +65,6 @@ const LoginForm = () => {
         />
       </div>
       {error && <div style={{ color: 'red' }}>{error}</div>}
-      {tokenExpiration && <div className="timer">Tiempo restante de sesión: {Math.ceil(tokenExpiration / 1000)} segundos</div>}
       <div className="button-container">
         <button type="submit">Iniciar sesión</button>
         <button type="button" onClick={() => navigate('/register')}>Registrar</button>
