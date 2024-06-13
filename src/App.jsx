@@ -5,7 +5,7 @@ import RegistroForm from './Components/RegistroForm';
 import PostForm from './Components/PostForm';
 import Publicaciones from './Components/PublicacionesList';
 import PerfilUsuario from './Components/PerfilUsuario';
-import Amigos from './Components/amigos'; // Asegúrate que el nombre del componente sea consistente
+import Amigos from './Components/amigos';
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -57,7 +57,7 @@ const App = () => {
     localStorage.removeItem('username');
     setIsLoggedIn(false);
     console.log('Token eliminado');
-    window.location.href = '/'; // Redirige a la página de inicio de sesión después de cerrar sesión
+    window.location.href = '/'; // me lleva a la página de inicio de sesión después de cerrar sesión
   };
 
   return (
@@ -75,8 +75,8 @@ const App = () => {
             <>
               <Link to="/post"><button>Publicar algo</button></Link>
               <Link to="/publicaciones"><button>Publicaciones</button></Link>
-              {username && <Link to={`/perfil/${username}`}><button>Mi Perfil</button></Link>} {/* Enlace al perfil del usuario logueado */}
-              <Link to="/amigos"><button>Buscar Amigos</button></Link> {/* Agrega el enlace para la lista de amigos */}
+              {username && <Link to={`/perfil/${username}`}><button>Mi Perfil</button></Link>} {}
+              <Link to="/amigos"><button>Buscar Amigos</button></Link> {}
             </>
           )}
 
@@ -86,7 +86,7 @@ const App = () => {
             <Route path="/post" element={isLoggedIn ? <PostForm /> : <Navigate to="/" />} />
             <Route path="/publicaciones" element={isLoggedIn ? <Publicaciones /> : <Navigate to="/" />} />
             <Route path="/perfil/:nombre_usuario" element={isLoggedIn ? <PerfilUsuario /> : <Navigate to="/" />} />
-            <Route path="/amigos" element={isLoggedIn ? <Amigos /> : <Navigate to="/" />} /> {/* Agrega la ruta para la lista de amigos */}
+            <Route path="/amigos" element={isLoggedIn ? <Amigos /> : <Navigate to="/" />} /> {}
           </Routes>
         </div>
 

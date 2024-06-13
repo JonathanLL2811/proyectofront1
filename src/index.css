@@ -46,8 +46,8 @@ button {
   cursor: pointer;
   transition: border-color 0.5s;
   margin-bottom: 30px;
-  display: inline-block; /* Mostrar los botones en línea */
-  margin-right: 10px; /* Ajustar el margen a la derecha */
+  display: inline-block; 
+  margin-right: 10px; 
 }
 
 button:hover {

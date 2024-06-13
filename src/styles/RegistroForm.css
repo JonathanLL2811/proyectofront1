@@ -1,30 +1,28 @@
-/* src/styles/RegistroForm.css */
 
-/* Aplica un fondo gris claro a todo el cuerpo */
 body {
-    background: linear-gradient(to bottom, #484949, #bdbaba); /* Degradado de gris oscuro a gris claro */
+    background: linear-gradient(to bottom, #484949, #bdbaba); 
     display: flex;
     justify-content: center;
     align-items: flex-start;
     min-height: 100vh;
     margin: 0;
-    padding-top: 20px; /* Espacio desde la parte superior */
+    padding-top: 20px; 
     font-family: Arial, sans-serif;
   }
   
-  /* Formulario centrado y estilizado */
+  
   form {
-    background: linear-gradient(to right, #080000, #2d2d2d); /* Degradado lateral de negro a gris oscuro */
+    background: linear-gradient(to right, #080000, #2d2d2d); 
     padding: 50px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(102, 101, 101, 0.1);
     width: 100%;
     max-width: 400px;
     box-sizing: border-box;
-    margin: 20px 0; /* Espacio entre formularios si se muestran en la misma página */
+    margin: 20px 0; 
   }
   
-  /* Estilos para los elementos del formulario */
+  
   form div {
     margin-bottom: 20px;
   }
@@ -33,7 +31,7 @@ body {
     display: block;
     margin-bottom: 3px;
     font-weight: bold;
-    color: #fff; /* Texto en blanco para mejor visibilidad */
+    color: #fff; 
   }
   
   form input[type="text"],

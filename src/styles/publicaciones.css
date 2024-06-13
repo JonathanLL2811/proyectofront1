@@ -21,8 +21,8 @@
   }
   
   .card-img-top {
-    width: 100%; /* Asegura que la imagen ocupe todo el ancho de la tarjeta */
-    height: auto; /* Mantiene la proporción de la imagen */
+    width: 100%; 
+    height: auto; 
   }
   
   .card-body {
@@ -35,20 +35,20 @@
   }
   
   .card-description {
-    font-size: 20px; /* Tamaño de fuente de la descripción */
-    color: #ffffff; /* Color del texto de la descripción */
-    font-family: 'Arial', sans-serif; /* Fuente de la descripción */
+    font-size: 20px; 
+    color: #ffffff; 
+    font-family: 'Arial', sans-serif; 
   }
   
   .card-link {
-    font-size: 20px; /* Tamaño de fuente del enlace */
-    color: #b379ff; /* Color del enlace */
-    font-family: 'Arial', sans-serif; /* Fuente del enlace */
-    text-decoration: none; /* Quita el subrayado del enlace */
+    font-size: 20px; 
+    color: #b379ff; 
+    font-family: 'Arial', sans-serif; 
+    text-decoration: none; 
   }
   
   .card-link:hover {
-    text-decoration: underline; /* Subraya el enlace al pasar el ratón */
+    text-decoration: underline; 
   }
   
   .btn-primary {
@@ -63,13 +63,13 @@
   
   .row {
     display: flex;
-    flex-direction: column; /* Cambia la dirección de las tarjetas a vertical */
-    align-items: center; /* Centra las tarjetas horizontalmente */
+    flex-direction: column; 
+    align-items: center; 
   }
   
   .col-md-4 {
-    width: 100%; /* Asegura que las tarjetas ocupen el 100% del contenedor */
-    max-width: 600px; /* Ajusta el ancho máximo de las tarjetas */
+    width: 100%; 
+    max-width: 600px; 
     box-sizing: border-box;
     padding: 10px;
   }

@@ -24,14 +24,14 @@ const LoginForm = ({ onLogin }) => {
         const { token, expiresIn } = await response.json();
 
         localStorage.setItem('jwtToken', token);
-        localStorage.setItem('username', username); // Guarda el nombre de usuario en el localStorage
+        localStorage.setItem('username', username); // me guarda el nombre de usuario en el localStorage
 
-        // Configurar expiración del token en milisegundos
+        // Configurare expiración del token en milisegundos como el ejemplo
         const expirationTime = new Date().getTime() + expiresIn * 1000;
         localStorage.setItem('tokenExpiration', expirationTime);
 
         onLogin(); // Actualiza el estado de isLoggedIn en App
-        navigate('/post'); // Redirige al usuario a /post después de iniciar sesión
+        navigate('/post'); // dirige al usuario a /post después de iniciar sesión
       } else {
         const errorData = await response.json();
         setError(errorData.error || 'Credenciales incorrectas. Por favor, intenta de nuevo.');

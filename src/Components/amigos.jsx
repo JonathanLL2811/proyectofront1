@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import '../styles/amigos.css'; // Importa el archivo CSS para estilos personalizados
+import '../styles/amigos.css'; 
 
 const Amigos = () => {
   const [usuarios, setUsuarios] = useState([]);

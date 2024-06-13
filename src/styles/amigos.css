@@ -1,4 +1,4 @@
-/* Amigos.css */
+
 .table-container {
     margin-top: 20px;
     display: flex;
@@ -11,7 +11,7 @@
   }
   
   .table-container table {
-    width: 110%; /* Ajusta el ancho de la tabla según sea necesario */
+    width: 110%; 
     border-collapse: collapse;
   }
   
@@ -24,7 +24,7 @@
   
   .table-container th {
     background-color: #3b3b3b;
-    color: #ffffff; /* Cambia el color del texto de los encabezados */
+    color: #ffffff; 
   }
   
   .table-container tr:hover {
@@ -32,6 +32,6 @@
   }
   
   .table-container a {
-    color: #5f3892; /* Cambia el color de los enlaces de usuario */
+    color: #5f3892; 
   }
   

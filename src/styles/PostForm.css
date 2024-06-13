@@ -1,20 +1,18 @@
-/* src/styles/PostForm.css */
 
-/* Aplica un fondo gris claro a todo el cuerpo */
 body {
-    background: linear-gradient(to bottom, #484949, #bdbaba); /* Degradado de gris oscuro a gris claro */
+    background: linear-gradient(to bottom, #484949, #bdbaba); 
     display: flex;
     justify-content: center;
     align-items: flex-start;
     min-height: 100vh;
     margin: 0;
-    padding-top: 20px; /* Espacio desde la parte superior */
+    padding-top: 20px; 
     font-family: Arial, sans-serif;
   }
   
-  /* Formulario centrado y estilizado */
+
   form {
-    background: linear-gradient(to right, #080000, #2d2d2d); /* Degradado lateral de negro a gris oscuro */
+    background: linear-gradient(to right, #080000, #2d2d2d); 
     padding: 50px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(102, 101, 101, 0.1);
@@ -23,7 +21,7 @@ body {
     box-sizing: border-box;
   }
   
-  /* Estilos para los elementos del formulario */
+
   form div {
     margin-bottom: 20px;
   }

@@ -9,7 +9,7 @@ const PostForm = () => {
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
-// Recuperar el nombre de usuario del localStorage
+// Recoge el nombre de usuario del localStorage
 const nombreUsuario = localStorage.getItem('username');
 
 const handleSubmit = async (e) => {
@@ -56,12 +56,12 @@ const handleSubmit = async (e) => {
       </div>
       <div>
       <label htmlFor="nombreUsuario">Nombre de usuario:</label>
-        {/* Llenar automáticamente el campo con el nombre de usuario */}
+        {/* Llena automáticamente el campo con el nombre de usuario */}
         <input
           type="text"
           id="nombreUsuario"
           value={nombreUsuario}
-          readOnly // Hacer el campo de solo lectura
+          readOnly // Hacer el campo de solo lectura porque ya lo llena automaticamente
           required
         />
       </div>

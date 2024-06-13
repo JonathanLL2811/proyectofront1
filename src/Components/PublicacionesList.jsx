@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import '../styles/publicaciones.css'; // Importa el archivo de estilos
+import '../styles/publicaciones.css'; 
 
 const PublicacionesList = () => {
   const [publicaciones, setPublicaciones] = useState([]);
